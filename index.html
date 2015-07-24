@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="gb2312">
+<meta http-equiv="Content-Type" content="text/html;" />
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="yes" name="apple-touch-fullscreen" />  
+<meta content="telephone=no,email=no" name="format-detection" />    
+<meta content="fullscreen=yes,preventMove=no" name="ML-Config" />
+<meta name="apple-mobile-web-app-capable" content="yes" />    
+<meta name="apple-mobile-web-app-status-bar-style" content="black" />    
+<meta name="format-detection" content="telephone=no; email=no" /> 
+<meta name="x5-fullscreen" content="true"/> 
+<meta name="viewport" content="width=640,user-scalable=no,target-densitydpi=device-dpi">
+<title>啊萍祝你生日快乐</title>
+<link rel="stylesheet" href="normalize.css">
+<link href="h5.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-1.11.2.min.js"></script>
+<script src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+<script src="http://special.zhaopin.com/dscpro/js/sha1.js"></script>
+</head>
+<body>
+    <div class="load">
+        <div class="loader">
+            <i></i><i></i>
+        </div>
+	</div> 
+	<div class="wrap">
+    <a class="arr"><img src="images/arr.png"></a>
+		<div class="cont">
+			<section class="s1">
+                <div class="sect-inner">
+                    <img src="images/s1_01.png" class="im1">
+                    <div class="txt">
+                        <img src="images/s1_03_1.png" class="im2">
+                        <img src="images/s1_03.png" class="im3">
+                    </div>
+                    <img src="images/s1_02.png" class="im4" style="margin-top: -50px;">
+                </div>
+			</section>
+            <section class="s2">
+                <div class="sect-inner">
+                  <!-- <img src="images/s1_01.png" class="im1"> -->
+                  <!-- <img src="images/s2_01.png" class="im2"> -->
+                  <div class="per">
+                      <div class="stu">
+                          <img src="images/s2_03.png" class="im3" style="margin-top: 50px;width: 130%;">
+                          <!-- <img src="images/s2_03_1.png" class="im4" > -->
+                      </div>
+                      <img src="images/s2_02.png" class="im5" style="margin-top:350px;">
+                  </div>
+                </div>
+            </section>
+            <section class="s3">
+                <div class="sect-inner">
+                    <!-- <img src="images/s1_01.png" class="im1"> -->
+                    <img src="images/s3_01.png" class="im2">
+                    <div class="per">
+                        <!-- <img src="images/s3_03_1.png" class="im3"> -->
+                        <!-- <img src="images/s3_03_2.png" class="im4"> -->
+                        <!-- <img src="images/s3_03_3.png" class="im5"> -->
+                        <img src="images/s3_02.png" class="p" style="margin-top: 100px;">
+                    </div>
+                </div>
+            </section>
+            <section class="s4">
+                <div class="sect-inner">
+                    <!-- <img src="images/s1_01.png" class="im1"> -->
+                    <img src="images/s4_01.png" class="im2" style="width: 105%;margin-top: -30px;">
+                    <div class="con">
+                        <!-- <img src="images/s4_02.png" class="im3"> -->
+                        <img src="images/s4_03_1.png" class="im4" >
+                        <img src="images/s4_03.png" class="im5">
+                    </div>
+                </div>
+            </section>
+            <section class="s5">
+                <div class="sect-inner">
+                    <img src="images/s1_01.png" class="im1" >
+                    <div class="txt">
+                        <div class="scroll">
+                        <ul>
+                            <li></li>
+                            <li></li>
+                        </ul>
+                        </div>
+                        <!-- <a class="share"><img src="images/ashare.png"></a> -->
+                    </div>
+
+                </div>
+            </section>
+		</div>	
+	</div>
+	<div class="sharepic">
+		<img src="images/sharepane.png">
+	</div>
+</body>
+<script src="js/iscroll.js"></script>
+<script type="text/javascript" src="js/swiper.js"></script>
+<script type="text/javascript">
+    var images =new Array(),count = 0;
+    
+    $('html,body').find('img').each(function(i) {
+        images[i]=$(this).attr('src');
+    });
+
+    for (var i = 0; i < images.length; i++) {
+        img = new Image;
+        img.src = images[i];
+        img.onload = function() {
+            count++;
+            if(count==images.length-1)
+            {
+                $('.load').fadeOut(100,function(){
+                    $('.cont section').eq(0).addClass('cur');
+                });
+                 var myScroll = new IScroll('.scroll', {
+                    zoom: true,
+                    scrollY: true,
+                    mouseWheel: true,
+                    wheelAction: 'zoom'
+                });
+
+                  $('.wrap').touchSwiper({
+                    parentele:'.cont',
+                    ele: ".cont section",
+                    //direct:'horizontal',
+                    active: "cur",
+                    min_move_x:20,
+                    min_move_y:20,
+                });
+            }
+        }
+    };
+    $('.share').on('click',function(){
+        $('.sharepic').fadeIn();
+    });
+
+    $('.sharepic').on('click', function() {
+        $(this).fadeOut(100);
+    });
+</script>
+<script type="text/javascript">
+    function setWeixin(data) {
+        var _gticket = data.msg;
+        var _gUrl = window.location.href
+        var _arr1 = _gticket.split('=')
+        var _arr2 = [];
+        for (var i = 0; i < _arr1.length; i++) {
+            var s = _arr1[i].split('&')
+            _arr2.push(s);
+        };
+        var _newticket = "jsapi_ticket=" + _arr2[1][0] + "&noncestr=" + _arr2[2][0] + "&timestamp=" + _arr2[3][0] + "&url=" + _gUrl
+        var sig = hex_sha1(_newticket)
+        wx.config({
+            debug: false,
+            appId: 'wxe60091deeb1eac11',
+            timestamp: _arr2[3][0],
+            nonceStr: _arr2[2][0],
+            signature: sig,
+            jsApiList: [
+                'checkJsApi',
+                'onMenuShareTimeline',
+                'onMenuShareAppMessage',
+                'onMenuShareQQ',
+                'onMenuShareWeibo',
+                'hideMenuItems',
+                'showMenuItems'
+            ]
+        });
+
+        wx.ready(function() {
+            var wxData = {
+                title: 'Ð£Ô°+2015ÖÇÁªÕÐÆ¸Ð£Ô°ÍÆ½é»á',
+                desc: 'Ð£Ô°+2015ÖÇÁªÕÐÆ¸Ð£Ô°ÍÆ½é»á',
+                link: 'http://special.zhaopin.com/h5/sh/2015/tjh062550/',
+                imgUrl: 'http://special.zhaopin.com/h5/sh/2015/tjh062550/images/wx.jpg'
+            }
+            wx.checkJsApi({
+                jsApiList: [
+                    'checkJsApi',
+                    'onMenuShareTimeline',
+                    'onMenuShareAppMessage',
+                    'onMenuShareQQ',
+                    'onMenuShareWeibo',
+                    'hideMenuItems',
+                    'showMenuItems'
+                ],
+                success: function(res) {
+                    console.log(JSON.stringify(res));
+                }
+            });
+            wx.onMenuShareAppMessage({
+                title: wxData.title,
+                desc: wxData.desc,
+                link: wxData.link,
+                imgUrl: wxData.imgUrl,
+                trigger: function(res) {
+                },
+                success: function(res) {
+                    $('.sharepic').hide();
+                },
+                fail: function(res) {
+                    console.log(JSON.stringify(res));
+                }
+            });
+            wx.onMenuShareTimeline({
+                title: wxData.title, // ·ÖÏí±êÌâ
+                link: wxData.link, // ·ÖÏíÁ´½Ó
+                imgUrl: wxData.imgUrl, // ·ÖÏíÍ¼±ê
+                success: function() {
+                    $('.sharepic').hide();
+                }
+            });
+            wx.onMenuShareQQ({
+                title: wxData.title, // ·ÖÏí±êÌâ
+                desc: wxData.desc, // ·ÖÏíÃèÊö
+                link: wxData.link, // ·ÖÏíÁ´½Ó
+                imgUrl: wxData.imgUrl, // ·ÖÏíÍ¼±ê
+                success: function() {
+                   $('.sharepic').hide();
+                },
+                cancel: function() {
+                    // ÓÃ»§È¡Ïû·ÖÏíºóÖ´ÐÐµÄ»Øµ÷º¯Êý
+                }
+            });
+            wx.onMenuShareWeibo({
+                title: wxData.title, // ·ÖÏí±êÌâ
+                desc: wxData.desc, // ·ÖÏíÃèÊö
+                link: wxData.link, // ·ÖÏíÁ´½Ó
+                imgUrl: wxData.imgUrl,
+                success: function() {
+                    $('.sharepic').hide();
+                },
+                cancel: function() {
+                    // ÓÃ»§È¡Ïû·ÖÏíºóÖ´ÐÐµÄ»Øµ÷º¯Êý
+                }
+            });
+        });
+    }
+    $.ajax({
+        url: 'http://zhida.minisite.zhaopin.com/TokenHandler.ashx?cmd=GetTicket',
+        type: 'get',
+        dataType: "jsonp",
+        jsonpCallback: "jsonp_success",
+        success: function(data) {
+            setWeixin(data)
+        }
+    })
+</script>
+</html>
